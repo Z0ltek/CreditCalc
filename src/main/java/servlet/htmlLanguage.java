@@ -2,6 +2,11 @@ package servlet;
 
 import java.io.PrintWriter;
 
+/**
+ * Created by Szymon on 2017-03-14.
+ * update
+ */
+
 public class htmlLanguage {
 
     // GLOBAL VARIABLE
