@@ -19,8 +19,12 @@ public class Credit {
         return valueOfCredit;
     }
 
-    public void setValueOfCredit(double valueOfCredit) {
-        this.valueOfCredit = valueOfCredit;
+    public void setValueOfCredit(String arg) {
+        try {
+            this.valueOfCredit = Double.parseDouble(arg);
+        }catch( Exception e ){
+            this.valueOfCredit = 0;
+        }
     }
 
     public double getPercent() {
@@ -35,24 +39,37 @@ public class Credit {
         return numberOfInstallments;
     }
 
-    public void setNumberOfInstallments(double numberOfInstallments) {
-        this.numberOfInstallments = numberOfInstallments;
+    public void setNumberOfInstallments(String arg) {
+        try {
+            this.numberOfInstallments = Double.parseDouble(arg);
+        }catch( Exception e ){
+            this.numberOfInstallments = 0;
+        }
     }
 
     public double getFixedFee() {
         return FixedFee;
     }
 
-    public void setFixedFee(double fixedFee) {
-        FixedFee = fixedFee;
+    public void setFixedFee(String arg) {
+        try {
+            this.FixedFee= Double.parseDouble(arg);
+        }catch( Exception e ){
+            this.FixedFee = 0;
+        }
     }
 
     public int getTypeOfInstallments() {
         return typeOfInstallments;
     }
 
-    public void setTypeOfInstallments(int typeOfInstallments) {
-        this.typeOfInstallments = typeOfInstallments;
+    public void setTypeOfInstallments(int arg) {
+        this.typeOfInstallments = arg;
+    }
+
+
+    public double interest(double arg, double prc) {
+        return (arg * prc) / 100;
     }
 
     public double getTotalAmountOfInterest() {
@@ -60,7 +77,7 @@ public class Credit {
     }
 
     public void setTotalAmountOfInterest(double totalAmountOfInterest) {
-        this.totalAmountOfInterest = totalAmountOfInterest;
+        this.totalAmountOfInterest = (interest(this.valueOfCredit, this.percent));
     }
 
     public double getTotalAmountOfFixedFee() {
