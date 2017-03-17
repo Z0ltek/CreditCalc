@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<%@page language="java" contentType="text/html; charset=UTF-8"
+        pageEncoding="UTF-8"%>
 <html>
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-2" />
@@ -6,20 +7,17 @@
 <center><h1>Credit Calc beta</h1></center><br><br>
 
 <center>
-<form action="credit" method="post" name="formula">
+<form action="java/tablaaaaa" method="POST">
 <table>
     <tr>
         <td>
             Kwota kredytu:
         </td>
         <td>
-            Ilosc rat:
+            Ilość rat:
         </td>
         <td>
             Oprocentowanie:
-        </td>
-        <td>
-            Oplata stala:
         </td>
         <td>
             Rodzaj rat:
@@ -29,28 +27,26 @@
     </tr>
     <tr>
         <td>
-            <input type="text" id="formValueOfCredit" name="formValueOfCredit"/>
+            <input type="text" name="formValueOfCredit"/>
         </td>
         <td>
-            <input type="text" id="formNumberOfInstalments" name="formNumberOfInstalments"/>
+            <input type="text" name="formNumberOfInstalments"/>
         </td>
         <td>
-            <input type="text" id="formInterest" name="formInterest"/>
+            <input type="text" name="formInterest"/>
         </td>
         <td>
-            <input type="text" id="formFixedFee" name="formFixedFee"/>
+            <input type="radio" name="typeOfInstalments" value="degreas" checked/>Malejaca</br>
+            <input type="radio" name="typeOfInstalments" value="constans"/>Stala
         </td>
         <td>
-            <input type="radio" id="typeOfInstalmentsMalejace" name="typeOfInstalments" checked/>Malejaca</br>
-            <input type="radio" id="typeOfInstalmentsStale" name="typeOfInstalments"/>Stala
-        </td>
-        <td>
-            <input type="submit" value="Oblicz" >
+            <input type="submit" name="submit" value="Oblicz" >
         </td>
     </tr>
 
 </table>
 </form>
+    <% if (request.getParameter("submit") != null) out.println("Wczytano dane...");%>
 </center>
 </body>
 </html>
