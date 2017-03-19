@@ -7,7 +7,7 @@
 <center><h1>Credit Calc beta</h1></center><br><br>
 
 <center>
-<form action="java/tablaaaaa" method="POST">
+<form action="tabela" method="POST">
 <table>
     <tr>
         <td>
@@ -36,8 +36,8 @@
             <input type="text" name="formInterest"/>
         </td>
         <td>
-            <input type="radio" name="typeOfInstalments" value="degreas" checked/>Malejaca</br>
-            <input type="radio" name="typeOfInstalments" value="constans"/>Stala
+            <input type="radio" name="typeOfInstalments" value="malejace" checked/>Malejaca</br>
+            <input type="radio" name="typeOfInstalments" value="rowne"/>Stala
         </td>
         <td>
             <input type="submit" name="submit" value="Oblicz" >
