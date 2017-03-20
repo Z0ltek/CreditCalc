@@ -22,12 +22,12 @@ public class Repayment {
     private StringBuilder stringBuilder = new StringBuilder();
 
     private String headers = "<tr>"
-            + "<th>Miesiąc</th>"
+            + "<th>Miesiac</th>"
             + "<th>Saldo</th>"
-            + "<th>Część odsetkowa</th>"
-            + "<th>Część kapitałowa</th>"
+            + "<th>Czesc odsetkowa</th>"
+            + "<th>Czesc kapitalowa</th>"
             + "<th>Rata</th>"
-            + "<th>Pozostało</th>"
+            + "<th>Pozostalo</th>"
             + "</tr>";
 
 
@@ -59,16 +59,16 @@ public class Repayment {
                 capital = installment - interest;
             }
 
-            stringBuilder.append("<tr><td>"+n+"</td><td>"+saldo
-                                +"</td><td>"+interest
-                                +"</td><td>"+capital
-                                +"</td><td>"+installment
-                                +"</td><td>"+left
-                                +"</td><td>");
+            stringBuilder.append("<tr><td>"+n+"</td><td>"+round2(saldo)
+                    +"</td><td>"+round2(interest)
+                    +"</td><td>"+round2(capital)
+                    +"</td><td>"+round2(installment)
+                    +"</td><td>"+round2(left)
+                    +"</td><td>");
 
             saldo = left;
 
-            if(n%12==0 && n!=numberOfInstallments){
+            if(n%50==0 && n!=numberOfInstallments){
                 stringBuilder.append(headers);
             }
 
@@ -87,11 +87,11 @@ public class Repayment {
         left = saldo - valueOfCredit;
 
 
-        stringBuilder.append("<tr><td>"+n+"</td><td>"+saldo
-                +"</td><td>"+interest
-                +"</td><td>"+capital
-                +"</td><td>"+installment
-                +"</td><td>"+left
+        stringBuilder.append("<tr><td>"+n+"</td><td>"+round2(saldo)
+                +"</td><td>"+round2(interest)
+                +"</td><td>"+round2(capital)
+                +"</td><td>"+round2(installment)
+                +"</td><td>"+round2(left)
                 +"</td><td>");
 
         saldo = left;
@@ -110,22 +110,27 @@ public class Repayment {
             installment = valueOfCredit+interest;
 
 
-            stringBuilder.append("<tr><td>"+n+"</td><td>"+saldo
-                    +"</td><td>"+interest
-                    +"</td><td>"+capital
-                    +"</td><td>"+installment
-                    +"</td><td>"+left
+            stringBuilder.append("<tr><td>"+n+"</td><td>"+round2(saldo)
+                    +"</td><td>"+round2(interest)
+                    +"</td><td>"+round2(capital)
+                    +"</td><td>"+round2(installment)
+                    +"</td><td>"+round2(left)
                     +"</td><td>");
 
             saldo = left;
 
-            if(n%12==0 && n!=numberOfInstallments){
+            if(n%50==0 && n!=numberOfInstallments){
                 stringBuilder.append(headers);
             }
 
         }
 
         return stringBuilder;
+    }
+
+    public double round2(double a){
+        a = Math.round(a*100d)/100d;
+        return a;
     }
 
 }

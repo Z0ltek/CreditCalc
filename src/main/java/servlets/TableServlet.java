@@ -1,8 +1,11 @@
 package servlets;
 import credit.Credit;
 import model.Repayment;
+import model.PDFcreator;
 
 import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,20 +30,20 @@ public class TableServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         try {
-            resp.getWriter().println("Hello!POST0");
-            value = Double.parseDouble(req.getParameter("formValueOfCredit"));
-            pc = Double.parseDouble(req.getParameter("formNumberOfInstalments"));
-            numberOf = Integer.parseInt(req.getParameter("formInterest"));
-            resp.getWriter().println("Hello!POST0afterTry");
+//            resp.getWriter().println("Hello!POST0");
+            value = Double.parseDouble(req.getParameter("formValueOfCredit").replace(",", "."));
+            pc = Double.parseDouble(req.getParameter("formInterest").replace(",", "."));
+            numberOf = Integer.parseInt(req.getParameter("formNumberOfInstalments"));
+//            resp.getWriter().println("Hello!POST0afterTry");
 
         } catch ( Exception e){
-            resp.getWriter().println("Hello!POST1");
-//            resp.sendRedirect("/");
+//            resp.getWriter().println("Hello!POST1");
+            resp.sendRedirect("/");
 
         }
 
         if(value > 100 || numberOf > 1 || pc > 0 ){
-            resp.getWriter().println("Hello!Post2");
+//            resp.getWriter().println("Hello!Post2");
 
             Credit credit = new Credit();
             credit.setNumberOfInstallments(numberOf);
@@ -50,54 +53,54 @@ public class TableServlet extends HttpServlet {
             Repayment repayment = new Repayment(credit);
 
             resp.setContentType("text/html");
-            resp.setCharacterEncoding("UTF-8");
+            resp.setCharacterEncoding("ISO-8859-2");
 
             StringBuilder stringBuilder = new StringBuilder();
 
 
             stringBuilder.append(""
-                    + "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" "
-                    + "\"http://www.w3.org/TR/html4/loose.dtd\">"
                     + "<html>"
                     + "<head>"
-                    + "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>"
+                    + "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-2\"/>"
+                    + "<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\" />"
+                    + "<title>Kalkulator kredytowy</title>"
                     + "<title>Credit Calc</title>"
                     + "</head>"
                     + "<body>"
                     + "<br/><br/>"
                     + "<table class='t'>"
                     + "<tr>"
-                    + "<th>Miesiąc</th>"
+                    + "<th>Miesiac</th>"
                     + "<th>Saldo</th>"
-                    + "<th>Część odsetkowa</th>"
-                    + "<th>Część kapitałowa</th>"
+                    + "<th>Czesc odsetkowa</th>"
+                    + "<th>Czesc kapitalowa</th>"
                     + "<th>Rata</th>"
-                    + "<th>Pozostało</th>"
+                    + "<th>Pozostalo</th>"
                     + "</tr>"
-                    + ( req.getParameter("typeOfInstalments").equals("rowne") ?
+                    + ( req.getParameter("typeOfInstalments").equals("malejace") ?
                     repayment.enumConstansInstallment() : repayment.enumDegresInstallment())
                     + "</table>"
                     + "</body>"
                     + "</html>");
 
-//            resp.getWriter().println(stringBuilder);
+            resp.getWriter().println(stringBuilder);
 
 
-//            Reader reader = new StringReader(stringBuilder.toString());
-//
-//            if (request.getParameter("generate") != null){
-//                new PDFcreator(request, response, reader);
-//            }
-//            else {
-//                PrintWriter out = resp.getWriter();
-//                out.println(stringBuilder);
-//                out.close();
+            Reader reader = new StringReader(stringBuilder.toString());
+
+            if (req.getParameter("generate") != null){
+                new PDFcreator(req, resp, reader);
+            }
+            else {
+
+            }
+                resp.getWriter().close();
             }
         }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.getWriter().println("asd");
+        resp.getWriter().println("Prosze podaj dane...");
     }
 
     }

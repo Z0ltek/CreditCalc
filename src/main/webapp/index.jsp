@@ -3,6 +3,7 @@
 <html>
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-2" />
+    <link rel="stylesheet" href="style.css" type="text/css" />"
 </head>
 <center><h1>Credit Calc beta</h1></center><br><br>
 
@@ -40,13 +41,15 @@
             <input type="radio" name="typeOfInstalments" value="rowne"/>Stala
         </td>
         <td>
-            <input type="submit" name="submit" value="Oblicz" >
+            <input type="submit" name="submit" value="Oblicz" ><br>
+            <input type="submit" name="generate" value="Oblicz i wygeneruj PDF">
         </td>
     </tr>
 
 </table>
 </form>
     <% if (request.getParameter("submit") != null) out.println("Wczytano dane...");%>
+
 </center>
 </body>
 </html>
