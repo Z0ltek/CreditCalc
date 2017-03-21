@@ -3,11 +3,11 @@
 <html>
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-2" />
-    <link rel="stylesheet" href="style.css" type="text/css" />"
+    <link rel="stylesheet" href="style.css" type="text/css" />Szymon Zoltowski s12904
 </head>
-<center><h1>Credit Calc beta</h1></center><br><br>
-
 <center>
+<h1>Credit Calc</h1><br><br>
+</center>
 <form action="tabela" method="POST">
 <table>
     <tr>
@@ -42,7 +42,7 @@
         </td>
         <td>
             <input type="submit" name="submit" value="Oblicz" ><br>
-            <input type="submit" name="generate" value="Oblicz i wygeneruj PDF">
+            <input type="submit" name="generate" value="Wygeneruj PDF">
         </td>
     </tr>
 
@@ -50,6 +50,5 @@
 </form>
     <% if (request.getParameter("submit") != null) out.println("Wczytano dane...");%>
 
-</center>
 </body>
 </html>

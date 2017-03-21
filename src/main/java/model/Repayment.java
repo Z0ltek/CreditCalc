@@ -53,7 +53,6 @@ public class Repayment {
             interest = installment-capital;
 
             left = saldo - capital;
-
             if(installment>saldo){
                 installment = saldo;
                 capital = installment - interest;
@@ -64,15 +63,13 @@ public class Repayment {
                     +"</td><td>"+round2(capital)
                     +"</td><td>"+round2(installment)
                     +"</td><td>"+round2(left)
-                    +"</td><td>");
+                    +"</td></tr>");
 
             saldo = left;
 
             if(n%50==0 && n!=numberOfInstallments){
                 stringBuilder.append(headers);
             }
-
-
         }
         return stringBuilder;
     }
@@ -80,51 +77,32 @@ public class Repayment {
     public StringBuilder enumDegresInstallment(){
 
         saldo = valueOfCredit;
-
         capital = valueOfCredit / numberOfInstallments;
-        interest = valueOfCredit * percent;
-        installment = valueOfCredit = interest;
-        left = saldo - valueOfCredit;
 
 
-        stringBuilder.append("<tr><td>"+n+"</td><td>"+round2(saldo)
-                +"</td><td>"+round2(interest)
-                +"</td><td>"+round2(capital)
-                +"</td><td>"+round2(installment)
-                +"</td><td>"+round2(left)
-                +"</td><td>");
+        for(n=1; n<=numberOfInstallments; n++){
 
-        saldo = left;
-
-
-        for(n=2; n<=numberOfInstallments; n++){
-
-            interest = left = valueOfCredit;
-
-            left = saldo - valueOfCredit;
+            interest = saldo * percent;
+            installment = capital+interest;
+            left = saldo - capital;
 
             if(installment>=saldo){
                 valueOfCredit = saldo - interest;
             }
-
-            installment = valueOfCredit+interest;
-
 
             stringBuilder.append("<tr><td>"+n+"</td><td>"+round2(saldo)
                     +"</td><td>"+round2(interest)
                     +"</td><td>"+round2(capital)
                     +"</td><td>"+round2(installment)
                     +"</td><td>"+round2(left)
-                    +"</td><td>");
+                    +"</td></tr>");
 
             saldo = left;
 
             if(n%50==0 && n!=numberOfInstallments){
                 stringBuilder.append(headers);
             }
-
         }
-
         return stringBuilder;
     }
 

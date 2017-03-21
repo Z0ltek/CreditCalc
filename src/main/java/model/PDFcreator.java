@@ -19,23 +19,25 @@ import com.itextpdf.tool.xml.XMLWorkerHelper;
 
 public class PDFcreator extends HttpServlet{
 
+    private static String FILE = "Kredyt.pdf";
+
     public PDFcreator(HttpServletRequest req, HttpServletResponse resp,
                       Reader reader) {
 
-        Document document = new Document(PageSize.A4.rotate());
+
+        Document document = new Document(PageSize.A4);
         PdfWriter writer = null;
         resp.setContentType("application/pdf");
         document.open();
 
 
         try{
-            writer = PdfWriter.getInstance(document, resp.getOutputStream());
+            writer = PdfWriter.getInstance(document, new FileOutputStream(FILE));
             document.open();
-            document.add(new Paragraph(new Date().toString()));
+//            document.add(addElement(reader));
             XMLWorkerHelper.getInstance().parseXHtml(writer, document, reader);
 
         }catch(Exception e){
-
             e.printStackTrace();
         }
         document.close();

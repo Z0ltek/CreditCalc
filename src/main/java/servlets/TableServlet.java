@@ -77,7 +77,7 @@ public class TableServlet extends HttpServlet {
                     + "<th>Rata</th>"
                     + "<th>Pozostalo</th>"
                     + "</tr>"
-                    + ( req.getParameter("typeOfInstalments").equals("malejace") ?
+                    + ( req.getParameter("typeOfInstalments").equals("rowne") ?
                     repayment.enumConstansInstallment() : repayment.enumDegresInstallment())
                     + "</table>"
                     + "</body>"
