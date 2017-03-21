@@ -2,6 +2,7 @@ package model;
 
 import java.io.FileOutputStream;
 import java.io.Reader;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
 
@@ -19,7 +19,7 @@ import com.itextpdf.tool.xml.XMLWorkerHelper;
 
 public class PDFcreator extends HttpServlet{
 
-    private static String FILE = "Kredyt.pdf";
+
 
     public PDFcreator(HttpServletRequest req, HttpServletResponse resp,
                       Reader reader) {
@@ -27,20 +27,21 @@ public class PDFcreator extends HttpServlet{
 
         Document document = new Document(PageSize.A4);
         PdfWriter writer = null;
-        resp.setContentType("application/pdf");
         document.open();
+        Date currentDate = new Date();
+        SimpleDateFormat dataFormat = new SimpleDateFormat("HH:mm:ss");
+        String dataString = dataFormat.format(currentDate);
+        dataString = dataString.replace(":","_");
 
 
         try{
-            writer = PdfWriter.getInstance(document, new FileOutputStream(FILE));
+            writer = PdfWriter.getInstance(document, new FileOutputStream(dataString+"_Kredyt.pdf"));
             document.open();
-//            document.add(addElement(reader));
+            document.addAuthor("Szymon Zoltowski");
             XMLWorkerHelper.getInstance().parseXHtml(writer, document, reader);
-
+            document.close();
         }catch(Exception e){
             e.printStackTrace();
         }
-        document.close();
     }
-
 }
