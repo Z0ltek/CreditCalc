@@ -27,7 +27,7 @@ public class TableServlet extends HttpServlet {
     private int numberOf;
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         try {
 //            resp.getWriter().println("Hello!POST0");

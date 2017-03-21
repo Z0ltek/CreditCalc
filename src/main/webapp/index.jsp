@@ -42,7 +42,7 @@
         </td>
         <td>
             <input type="submit" name="submit" value="Oblicz" ><br>
-            <input type="submit" name="generate" value="Wygeneruj PDF">
+            <input type="submit" name="generate" value="Oblicz oraz wygeneruj PDF">
         </td>
     </tr>
 
